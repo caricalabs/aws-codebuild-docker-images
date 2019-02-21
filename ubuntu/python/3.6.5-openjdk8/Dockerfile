@@ -14,6 +14,13 @@ FROM ubuntu:14.04.5
 
 ENV LANG="C.UTF-8"
 
+# Install some misc tools needed for Aprica builds
+RUN set -ex \
+    && apt-get update \
+    && apt install -y zip \
+    && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && apt-get clean
+
 ENV DOCKER_BUCKET="download.docker.com" \
     DOCKER_VERSION="17.09.0-ce" \
     DOCKER_CHANNEL="stable" \
@@ -208,12 +215,6 @@ RUN set -ex \
     && update-alternatives --install /usr/local/bin/gradle gradle /opt/gradle-$GRADLE_VERSION/bin/gradle 10000 \
 
     # Cleanup
-    && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && apt-get clean
-
-# Install some other tools needed for Aprica builds
-RUN set -ex \
-    && apt install -y zip \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get clean
 
