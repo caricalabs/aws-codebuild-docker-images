@@ -211,4 +211,8 @@ RUN set -ex \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get clean
 
+# Install some other tools needed for Aprica builds
+RUN set -ex \
+    && apt install -y zip
+
 CMD ["python3"]
