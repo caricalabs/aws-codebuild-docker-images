@@ -213,6 +213,7 @@ RUN set -ex \
 
 # Install some other tools needed for Aprica builds
 RUN set -ex \
-    && apt install -y zip
+    && apt install -y zip \
+    && apt-get clean
 
 CMD ["python3"]
