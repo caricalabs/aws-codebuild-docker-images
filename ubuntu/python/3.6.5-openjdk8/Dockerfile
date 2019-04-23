@@ -101,11 +101,14 @@ COPY dockerd-entrypoint.sh /usr/local/bin/
 
 #############################################################################
 # Carica Labs Miscellaneous
+#
+# "zip" is required to build Lambda deployment archives
+# "libxmlsec" is required to build xmlsec (which is required by python3-saml)
 #############################################################################
 
 RUN set -ex \
     && apt-get update \
-    && apt install -y zip \
+    && apt install -y zip libxmlsec1-dev \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get clean
 
